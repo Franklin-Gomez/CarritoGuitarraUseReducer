@@ -20,6 +20,8 @@ export const  initialState : CartState = {
     cart : []
 }
 
+const CANT_MAX = 5;
+const CANT_MIN = 1;
 
 // Reducer
 export const cartReducer = ( 
@@ -28,12 +30,35 @@ export const cartReducer = (
     actions : CartActions
 
     ) => { 
-        
+
     // dispatch 
     if( actions.type == "addToCart") { 
-        return {
-            ...state
+
+        // comprobacion que elemento existe en el state 
+        const itemExists = state.cart.findIndex( guitar => guitar.id === actions.payload.item.id )
+
+        let updateCart : cartItem[] = []
+
+        if( itemExists >= 0) {  // existe en el carrito 
+
+            if(state.cart[itemExists].quantity > CANT_MAX ) return
+
+            updateCart = [...state.cart];
+            updateCart[itemExists].quantity++
+
+
+        } else { // no existe en el carrito
+            
+            const newItem : cartItem =  { ...actions.payload.item , quantity : 1  }
+            updateCart = [ ...state.cart , newItem ];
+
         }
+
+        return {
+            ...state,
+            cart : updateCart
+        }
+
     }
 
     if( actions.type == "removeFromCart") { 
