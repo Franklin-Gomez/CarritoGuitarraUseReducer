@@ -35,7 +35,7 @@ function App() {
               // props
               guitar={ guitar }  
               key={guitar.id}
-              addToCart={addToCart}
+              dispatch={dispatch}
             />
           })}
           

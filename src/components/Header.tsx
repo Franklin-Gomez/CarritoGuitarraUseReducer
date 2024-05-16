@@ -9,7 +9,7 @@ type HeaderProps = {
 
 }
 
-function Header( {cart , removeFromCart , increaseyQuantity , decrementQuantity , cleanCart , isEmpty , cartTotal } : HeaderProps ) {
+function Header( {cart , removeFromCart , increaseyQuantity , decrementQuantity , cleanCart , isEmpty , cartTotal  } : HeaderProps ) {
 
     return (
         <header className="py-5 header">
