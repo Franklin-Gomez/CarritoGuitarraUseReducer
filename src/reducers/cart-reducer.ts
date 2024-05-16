@@ -1,4 +1,3 @@
-import { act } from "react-dom/test-utils"
 import { db } from "../db/db"
 
 // actions
@@ -29,7 +28,7 @@ export const cartReducer = (
     actions : CartActions
 
     ) => { 
-
+        
     // dispatch 
     if( actions.type == "addToCart") { 
         return {

@@ -1,12 +1,15 @@
+import { useReducer } from "react";
 import Guitar from "./components/Guitar"
 import Header from "./components/Header"
 import { db } from "./db/db";
 import { useCart } from "./hooks/useCart";
+import { cartReducer, initialState } from "./reducers/cart-reducer";
 
 function App() {
 
   const {  addToCart , removeFromCart , increaseyQuantity , decrementQuantity , cart , cleanCart , isEmpty , cartTotal } = useCart();
 
+  const [ state , dispach] = useReducer( cartReducer , initialState )
 
   return (
     <>
