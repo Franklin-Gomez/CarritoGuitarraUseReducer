@@ -1,5 +1,4 @@
 import { useEffect, useState , useMemo} from "react"
-import { db } from "../db/db";
 
 export const useCart = () => { 
  
@@ -11,7 +10,7 @@ export const useCart = () => {
 
     // Hooks
     //const [data , setData ] = useState([]);
-    const [ data ] = useState( db)
+
     const [cart , setCart ] = useState(initialCart);
 
     const CANT_MAX = 5;
@@ -88,5 +87,5 @@ export const useCart = () => {
     const cartTotal =  useMemo( () => { return cart.reduce( ( total , item ) => total + ( item.quantity * item.price ) , 0 ) } , [cart] )
 
 
-    return { initialCart  , addToCart , removeFromCart , increaseyQuantity , decrementQuantity , data , cart , cleanCart , isEmpty , cartTotal }
+    return { initialCart  , addToCart , removeFromCart , increaseyQuantity , decrementQuantity , cart , cleanCart , isEmpty , cartTotal }
 }
