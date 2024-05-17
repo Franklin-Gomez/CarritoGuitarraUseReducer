@@ -7,7 +7,7 @@ import { cartReducer, initialState } from "./reducers/cart-reducer";
 function App() {
 
   // lo viejo con useCart.ts
-  const { increaseyQuantity , decrementQuantity  , cleanCart , isEmpty , cartTotal } = useCart();
+  const { cartTotal } = useCart();
 
   // lo nuevo con Reducer
   const [ state , dispatch] = useReducer( cartReducer , initialState )
@@ -18,10 +18,6 @@ function App() {
         // props
         cart={state.cart}
         dispatch={dispatch}
-        increaseyQuantity={increaseyQuantity}
-        decrementQuantity={decrementQuantity}
-        cleanCart={cleanCart}
-        isEmpty={isEmpty}
         cartTotal={cartTotal}
       />
 

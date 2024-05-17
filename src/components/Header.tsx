@@ -4,16 +4,12 @@ import { CartActions } from "../reducers/cart-reducer"
 type HeaderProps = { 
     cart : cartItem[]
     dispatch : React.Dispatch<CartActions>
-    increaseyQuantity: (id: number) => void
-    decrementQuantity: (id: number) => void
-    cleanCart : () => void
-    isEmpty : boolean
     cartTotal : number
     
 
 }
 
-function Header( {cart , dispatch  , increaseyQuantity , decrementQuantity , cleanCart   } : HeaderProps ) {
+function Header( {cart , dispatch  } : HeaderProps ) {
     
     // State Derivado
     const isEmpty = useMemo( () => { return cart.length === 0 } , [cart] ) 
@@ -65,7 +61,7 @@ function Header( {cart , dispatch  , increaseyQuantity , decrementQuantity , cle
                                                             >
                                                                 -
                                                             </button>
-                                                            
+
                                                             {guitar.quantity}
 
                                                             <button type="button" className="btn btn-dark"
@@ -90,7 +86,12 @@ function Header( {cart , dispatch  , increaseyQuantity , decrementQuantity , cle
                                         </table>
        
                                         <p className="text-end">Total pagar: <span className="fw-bold"> $ {cartTotal}</span></p>  
-                                        <button className="btn btn-dark w-100 mt-3 p-2" onClick={cleanCart} >Vaciar Carrito</button>                               
+                                        
+                                        <button className="btn btn-dark w-100 mt-3 p-2" //</>onClick={cleanCart }
+                                        onClick={() => dispatch( { type : 'cleanCart'})}
+                                        >
+                                            Vaciar Carrito
+                                        </button>                               
 
                                     </>
 
