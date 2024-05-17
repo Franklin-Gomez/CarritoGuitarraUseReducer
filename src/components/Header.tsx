@@ -4,9 +4,6 @@ import { CartActions } from "../reducers/cart-reducer"
 type HeaderProps = { 
     cart : cartItem[]
     dispatch : React.Dispatch<CartActions>
-    cartTotal : number
-    
-
 }
 
 function Header( {cart , dispatch  } : HeaderProps ) {
@@ -86,7 +83,7 @@ function Header( {cart , dispatch  } : HeaderProps ) {
                                         </table>
        
                                         <p className="text-end">Total pagar: <span className="fw-bold"> $ {cartTotal}</span></p>  
-                                        
+
                                         <button className="btn btn-dark w-100 mt-3 p-2" //</>onClick={cleanCart }
                                         onClick={() => dispatch( { type : 'cleanCart'})}
                                         >
