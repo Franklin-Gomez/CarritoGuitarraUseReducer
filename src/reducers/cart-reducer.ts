@@ -35,17 +35,33 @@ export const cartReducer = (
     if( actions.type == "addToCart") { 
 
         // comprobacion que elemento existe en el state 
-        const itemExists = state.cart.findIndex( guitar => guitar.id === actions.payload.item.id )
+        const itemExists = state.cart.find( guitar => guitar.id === actions.payload.item.id )
 
         let updateCart : cartItem[] = []
 
-        if( itemExists >= 0) {  // existe en el carrito 
+        if( itemExists ) {  // identificamos y comprobamos que existe en el carrito 
 
-            if(state.cart[itemExists].quantity > CANT_MAX ) return
+            updateCart =  state.cart.map( item => {  // recorremos todos los elementos
 
-            updateCart = [...state.cart];
-            updateCart[itemExists].quantity++
+                if( item.id == actions.payload.item.id ) {  // si el recien agregado ya existe
 
+                    if( item.quantity < CANT_MAX ) {  // y la cantidad sea menor a la maxima
+
+                        return { ...item , quantity : item.quantity + 1 } // aumentamos cantidad de dicho objeto
+
+                    } else { 
+
+                        return item // sino devolvemos el objeto
+
+                    }
+
+                } else { 
+
+                    return item  // si el se agrega por primera devolvemos el carrito
+
+                }
+
+            })
 
         } else { // no existe en el carrito
             
