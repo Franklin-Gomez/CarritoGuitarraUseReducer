@@ -90,14 +90,45 @@ export const cartReducer = (
     }
 
     if( actions.type == "increaseyQuantity") { 
+
+        const updateCart = state.cart.map( item => { 
+
+            if( item.id === actions.payload.id && item.quantity <= CANT_MAX) { 
+                return {
+                    ...item ,
+                    quantity : item.quantity + 1
+                }
+            }
+
+            // el resto de elemento que no dimos click no los perdamos.
+            return item
+        })
+
         return {
-            ...state
+            ...state,
+            cart : updateCart
         }
     }
 
     if( actions.type == "decrementQuantity") { 
+
+        const updateCart = state.cart.map( item => { 
+
+            if( item.id === actions.payload.id && item.quantity > CANT_MIN) { 
+                return {
+                    ...item ,
+                    quantity : item.quantity - 1
+                }
+            }
+
+            // el resto de elemento que no dimos click no los perdamos.
+            return item
+        })
+
+
         return {
-            ...state
+            ...state,
+            cart : updateCart
         }
     }
 

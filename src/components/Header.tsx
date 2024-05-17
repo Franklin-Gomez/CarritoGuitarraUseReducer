@@ -60,12 +60,18 @@ function Header( {cart , dispatch  , increaseyQuantity , decrementQuantity , cle
                                                         </td>
                                                         <td className="flex align-items-start gap-4">
                                                             <button type="button" className="btn btn-dark" 
-                                                            onClick={() => decrementQuantity( guitar.id)}>
+                                                            // onClick={() => decrementQuantity( guitar.id)}
+                                                            onClick={ () => dispatch({ type : 'decrementQuantity' , payload : { id : guitar.id}})}
+                                                            >
                                                                 -
                                                             </button>
+                                                            
                                                             {guitar.quantity}
+
                                                             <button type="button" className="btn btn-dark"
-                                                            onClick={() => increaseyQuantity(guitar.id)}>
+                                                            //onClick={() => increaseyQuantity(guitar.id)}
+                                                            onClick={ () => dispatch({ type : 'increaseyQuantity' , payload : { id : guitar.id}})}
+                                                            >
                                                                 +
                                                             </button>
                                                         </td>

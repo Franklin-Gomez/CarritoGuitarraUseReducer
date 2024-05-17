@@ -60,7 +60,8 @@ export const useCart = () => {
             // el resto de elemento que no dimos click no los perdamos.
             return item
         })
-    setCart(updateCart)
+        
+        setCart(updateCart)
     }
 
 
