@@ -1,11 +1,14 @@
+import { useReducer } from "react";
 import Guitar from "./components/Guitar"
 import Header from "./components/Header"
-import { db } from "./db/db";
 import { useCart } from "./hooks/useCart";
+import { cartReducer , initialState } from "./reducers/cart-reducer";
 
 function App() {
 
   const {  addToCart , removeFromCart , increaseyQuantity , decrementQuantity , cart , cleanCart , isEmpty , cartTotal } = useCart();
+
+  const [ state , dispatch ] = useReducer(cartReducer,initialState)
 
 
   return (
@@ -26,12 +29,12 @@ function App() {
 
         <div className="row mt-5">
 
-          { db.map(( guitar ) => {
+          { state.data.map(( guitar ) => {
             return <Guitar
               // props
               guitar={ guitar }  
               key={guitar.id}
-              addToCart={addToCart}
+              dispatch={dispatch}
             />
           })}
           
