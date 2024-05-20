@@ -4,15 +4,15 @@ import { db } from "../db/db";
 export const useCart = () => { 
  
     // comprobacion del carrito
-    const initialCart  = () : cartItem[] => { 
-        const localStorageCart = localStorage.getItem('cart')
-        return localStorageCart ? JSON.parse(localStorageCart) : []
-    }
+    // const initialCart  = () : cartItem[] => { 
+    //     const localStorageCart = localStorage.getItem('cart')
+    //     return localStorageCart ? JSON.parse(localStorageCart) : []
+    // }
 
     // Hooks
     //const [data , setData ] = useState([]);
     const [ data ] = useState( db)
-    const [cart , setCart ] = useState(initialCart);
+   // const [cart , setCart ] = useState(initialCart);
 
 
 
@@ -24,9 +24,9 @@ export const useCart = () => {
     const CANT_MIN = 1;
 
 
-    useEffect( () => { 
-        localStorage.setItem('cart', JSON.stringify(cart) )
-    } , [cart] )
+    // useEffect( () => { 
+    //     localStorage.setItem('cart', JSON.stringify(cart) )
+    // } , [cart] )
 
     // function addToCart( item : Guitar ){
     //     // comprobacion que elemento existe en el state 
@@ -93,5 +93,5 @@ export const useCart = () => {
     // const cartTotal =  useMemo( () => { return cart.reduce( ( total , item ) => total + ( item.quantity * item.price ) , 0 ) } , [cart] )
 
 
-    return { initialCart  , data , cart }
+    return { initialCart  , data }
 }
