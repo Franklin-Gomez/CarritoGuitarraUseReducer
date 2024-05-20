@@ -14,39 +14,42 @@ export const useCart = () => {
     const [ data ] = useState( db)
     const [cart , setCart ] = useState(initialCart);
 
-    const CANT_MAX = 5;
-    const CANT_MIN = 1;
+
 
     // useEffect( () => { 
     //     setData( db )
     // }, []);
 
+    const CANT_MAX = 5;
+    const CANT_MIN = 1;
+
+
     useEffect( () => { 
         localStorage.setItem('cart', JSON.stringify(cart) )
     } , [cart] )
 
-    function addToCart( item : Guitar ){
-        // comprobacion que elemento existe en el state 
-        const itemExists = cart.findIndex( guitar => guitar.id === item.id )
+    // function addToCart( item : Guitar ){
+    //     // comprobacion que elemento existe en el state 
+    //     const itemExists = cart.findIndex( guitar => guitar.id === item.id )
 
-        if( itemExists >= 0) {  // existe en el carrito 
+    //     if( itemExists >= 0) {  // existe en el carrito 
 
-            if(cart[itemExists].quantity > CANT_MAX ) return
+    //         if(cart[itemExists].quantity > CANT_MAX ) return
 
-            const updateCart = [...cart];
-            updateCart[itemExists].quantity++
-            setCart(updateCart)
+    //         const updateCart = [...cart];
+    //         updateCart[itemExists].quantity++
+    //         setCart(updateCart)
 
-        } else { // no existe en el carrito
-            const newItem : cartItem =  { ...item , quantity : 1  }
-            setCart( [ ...cart , newItem ]);
-        }
-    }
+    //     } else { // no existe en el carrito
+    //         const newItem : cartItem =  { ...item , quantity : 1  }
+    //         setCart( [ ...cart , newItem ]);
+    //     }
+    // }
 
-    function removeFromCart( id : Guitar['id']){
-        // nos develve todos los elementos menos el que se le dio click
-        setCart( prevCart => prevCart.filter( guitar => guitar.id !== id ))
-    }
+    // function removeFromCart( id : Guitar['id']){
+    //     // nos develve todos los elementos menos el que se le dio click
+    //     setCart( prevCart => prevCart.filter( guitar => guitar.id !== id ))
+    // }
 
     function increaseyQuantity(id : Guitar['id']) { 
         const updateCart = cart.map( item => { 
@@ -84,9 +87,9 @@ export const useCart = () => {
     }
 
     // State Derivado
-    const isEmpty = useMemo( () => { return cart.length === 0 } , [cart] ) 
+    //const isEmpty = useMemo( () => { return cart.length === 0 } , [cart] ) 
     const cartTotal =  useMemo( () => { return cart.reduce( ( total , item ) => total + ( item.quantity * item.price ) , 0 ) } , [cart] )
 
 
-    return { initialCart  , addToCart , removeFromCart , increaseyQuantity , decrementQuantity , data , cart , cleanCart , isEmpty , cartTotal }
+    return { initialCart  , increaseyQuantity , decrementQuantity , data , cart , cleanCart  , cartTotal }
 }

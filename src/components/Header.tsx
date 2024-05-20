@@ -1,15 +1,19 @@
+import { useMemo } from "react"
+import { CartActions } from "../reducers/cart-reducer"
+
 type HeaderProps = { 
     cart : cartItem[]
-    removeFromCart: (id: number) => void
+    dispatch : React.Dispatch<CartActions>
     increaseyQuantity: (id: number) => void
     decrementQuantity: (id: number) => void
     cleanCart : () => void
-    isEmpty : boolean
     cartTotal : number
 
 }
 
-function Header( {cart , removeFromCart , increaseyQuantity , decrementQuantity , cleanCart , isEmpty , cartTotal } : HeaderProps ) {
+function Header( {cart , dispatch ,  increaseyQuantity , decrementQuantity , cleanCart , cartTotal } : HeaderProps ) {
+
+    const isEmpty = useMemo( () => { return cart.length === 0 } , [cart] ) 
 
     return (
         <header className="py-5 header">
@@ -63,7 +67,8 @@ function Header( {cart , removeFromCart , increaseyQuantity , decrementQuantity 
                                                         </td>
                                                         <td>
                                                             <button className="btn btn-danger" type="button"
-                                                            onClick={() => removeFromCart(guitar.id)}
+                                                            //onClick={() => removeFromCart(guitar.id)}
+                                                            onClick={ () => dispatch({ type : "removeFromCart" , payload : { id : guitar.id }})}
                                                             >
                                                                 X
                                                             </button>

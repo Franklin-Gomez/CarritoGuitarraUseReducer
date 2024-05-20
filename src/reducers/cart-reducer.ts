@@ -2,7 +2,9 @@ import { db } from "../db/db"
 
 // Actions
 export type CartActions = 
-    { type : 'addToCart' , payload : { item : Guitar } } 
+    { type : 'addToCart' , payload : { item : Guitar } } |
+    { type : 'removeFromCart' , payload : { id : Guitar['id'] } } 
+
 
 // types
 export type CartState = { 
@@ -63,6 +65,16 @@ export const cartReducer = (
         }
 
         return {
+            ...state,
+            cart : updateCart
+        }
+    }
+
+    if( actions.type == 'removeFromCart') { 
+        // nos develve todos los elementos menos el que se le dio click
+        const updateCart = state.cart.filter( guitar => guitar.id !== actions.payload.id )
+        
+        return { 
             ...state,
             cart : updateCart
         }
