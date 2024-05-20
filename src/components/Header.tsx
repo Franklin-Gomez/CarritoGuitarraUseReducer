@@ -4,13 +4,12 @@ import { CartActions } from "../reducers/cart-reducer"
 type HeaderProps = { 
     cart : cartItem[]
     dispatch : React.Dispatch<CartActions>
-    cartTotal : number
-
 }
 
-function Header( {cart , dispatch  , cartTotal } : HeaderProps ) {
+function Header( {cart , dispatch  } : HeaderProps ) {
 
     const isEmpty = useMemo( () => { return cart.length === 0 } , [cart] ) 
+    const cartTotal =  useMemo( () => { return cart.reduce( ( total , item ) => total + ( item.quantity * item.price ) , 0 ) } , [cart] )
 
     return (
         <header className="py-5 header">

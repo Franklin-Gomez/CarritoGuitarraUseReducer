@@ -90,8 +90,8 @@ export const useCart = () => {
 
     // State Derivado
     //const isEmpty = useMemo( () => { return cart.length === 0 } , [cart] ) 
-    const cartTotal =  useMemo( () => { return cart.reduce( ( total , item ) => total + ( item.quantity * item.price ) , 0 ) } , [cart] )
+    // const cartTotal =  useMemo( () => { return cart.reduce( ( total , item ) => total + ( item.quantity * item.price ) , 0 ) } , [cart] )
 
 
-    return { initialCart  , data , cart  , cartTotal }
+    return { initialCart  , data , cart }
 }

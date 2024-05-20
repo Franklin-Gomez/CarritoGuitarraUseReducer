@@ -6,8 +6,6 @@ import { cartReducer , initialState } from "./reducers/cart-reducer";
 
 function App() {
 
-  const { cartTotal } = useCart();
-
   const [ state , dispatch ] = useReducer(cartReducer,initialState)
 
 
@@ -17,7 +15,6 @@ function App() {
         // props
         cart={state.cart}
         dispatch={dispatch}
-        cartTotal={cartTotal}
       />
 
       <main className="container-xl mt-5">
