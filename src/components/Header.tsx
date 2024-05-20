@@ -4,13 +4,12 @@ import { CartActions } from "../reducers/cart-reducer"
 type HeaderProps = { 
     cart : cartItem[]
     dispatch : React.Dispatch<CartActions>
-    decrementQuantity: (id: number) => void
     cleanCart : () => void
     cartTotal : number
 
 }
 
-function Header( {cart , dispatch , decrementQuantity , cleanCart , cartTotal } : HeaderProps ) {
+function Header( {cart , dispatch , cleanCart , cartTotal } : HeaderProps ) {
 
     const isEmpty = useMemo( () => { return cart.length === 0 } , [cart] ) 
 
@@ -55,7 +54,9 @@ function Header( {cart , dispatch , decrementQuantity , cleanCart , cartTotal } 
                                                         </td>
                                                         <td className="flex align-items-start gap-4">
                                                             <button type="button" className="btn btn-dark" 
-                                                            onClick={() => decrementQuantity( guitar.id)}>
+                                                            // onClick={() => decrementQuantity( guitar.id)}
+                                                            onClick={() => dispatch({ type : "decrementQuantity" , payload : { id : guitar.id} })}
+                                                            >
                                                                 -
                                                             </button>
                                                             {guitar.quantity}

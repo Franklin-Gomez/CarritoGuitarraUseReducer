@@ -70,19 +70,19 @@ export const useCart = () => {
     // }
 
 
-    function decrementQuantity( id : Guitar['id'] ) { 
-        const updateCart = cart.map( item => { 
-            if( item.id === id  && item.quantity > CANT_MIN) {
-                return{
-                    ...item , 
-                    quantity : item.quantity - 1
-                }
-            }
-            return item
-        })
+    // function decrementQuantity( id : Guitar['id'] ) { 
+    //     const updateCart = cart.map( item => { 
+    //         if( item.id === id  && item.quantity > CANT_MIN) {
+    //             return{
+    //                 ...item , 
+    //                 quantity : item.quantity - 1
+    //             }
+    //         }
+    //         return item
+    //     })
 
-        setCart( updateCart )
-    }
+    //     setCart( updateCart )
+    // }
 
     function cleanCart()  { 
         setCart([])
@@ -93,5 +93,5 @@ export const useCart = () => {
     const cartTotal =  useMemo( () => { return cart.reduce( ( total , item ) => total + ( item.quantity * item.price ) , 0 ) } , [cart] )
 
 
-    return { initialCart  , decrementQuantity , data , cart , cleanCart  , cartTotal }
+    return { initialCart  , data , cart , cleanCart  , cartTotal }
 }
