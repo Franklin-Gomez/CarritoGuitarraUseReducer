@@ -5,7 +5,8 @@ export type CartActions =
     { type : 'addToCart' , payload : { item : Guitar } } |
     { type : 'removeFromCart' , payload : { id : Guitar['id'] } } |
     { type : 'increaseyQuantity' , payload : { id : Guitar['id'] } } |
-    { type : 'decrementQuantity' , payload : { id : Guitar['id'] } } 
+    { type : 'decrementQuantity' , payload : { id : Guitar['id'] } } |
+    { type : 'cleanCart'} 
 
 
 // types
@@ -128,6 +129,13 @@ export const cartReducer = (
             cart : updateCart
         }
 
+    }
+
+    if( actions.type === "cleanCart") { 
+        return {
+            ...state,
+            cart : []
+        }
     }
 
     return { 

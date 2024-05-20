@@ -4,12 +4,11 @@ import { CartActions } from "../reducers/cart-reducer"
 type HeaderProps = { 
     cart : cartItem[]
     dispatch : React.Dispatch<CartActions>
-    cleanCart : () => void
     cartTotal : number
 
 }
 
-function Header( {cart , dispatch , cleanCart , cartTotal } : HeaderProps ) {
+function Header( {cart , dispatch  , cartTotal } : HeaderProps ) {
 
     const isEmpty = useMemo( () => { return cart.length === 0 } , [cart] ) 
 
@@ -82,7 +81,11 @@ function Header( {cart , dispatch , cleanCart , cartTotal } : HeaderProps ) {
                                         </table>
        
                                         <p className="text-end">Total pagar: <span className="fw-bold"> $ {cartTotal}</span></p>  
-                                        <button className="btn btn-dark w-100 mt-3 p-2" onClick={cleanCart} >Vaciar Carrito</button>                               
+                                        <button className="btn btn-dark w-100 mt-3 p-2" 
+                                        //onClick={cleanCart} 
+                                        onClick={ () => dispatch( { type : 'cleanCart'} )}
+
+                                        >Vaciar Carrito</button>                               
 
                                     </>
 

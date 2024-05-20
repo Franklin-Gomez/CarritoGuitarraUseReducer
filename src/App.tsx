@@ -6,7 +6,7 @@ import { cartReducer , initialState } from "./reducers/cart-reducer";
 
 function App() {
 
-  const { cleanCart , cartTotal } = useCart();
+  const { cartTotal } = useCart();
 
   const [ state , dispatch ] = useReducer(cartReducer,initialState)
 
@@ -17,7 +17,6 @@ function App() {
         // props
         cart={state.cart}
         dispatch={dispatch}
-        cleanCart={cleanCart}
         cartTotal={cartTotal}
       />
 

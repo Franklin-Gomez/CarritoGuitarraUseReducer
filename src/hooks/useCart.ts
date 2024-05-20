@@ -84,14 +84,14 @@ export const useCart = () => {
     //     setCart( updateCart )
     // }
 
-    function cleanCart()  { 
-        setCart([])
-    }
+    // function cleanCart()  { 
+    //     setCart([])
+    // }
 
     // State Derivado
     //const isEmpty = useMemo( () => { return cart.length === 0 } , [cart] ) 
     const cartTotal =  useMemo( () => { return cart.reduce( ( total , item ) => total + ( item.quantity * item.price ) , 0 ) } , [cart] )
 
 
-    return { initialCart  , data , cart , cleanCart  , cartTotal }
+    return { initialCart  , data , cart  , cartTotal }
 }
