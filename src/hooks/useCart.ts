@@ -51,21 +51,23 @@ export const useCart = () => {
     //     setCart( prevCart => prevCart.filter( guitar => guitar.id !== id ))
     // }
 
-    function increaseyQuantity(id : Guitar['id']) { 
-        const updateCart = cart.map( item => { 
+    // function increaseyQuantity(id : Guitar['id']) { 
+    //     const updateCart = cart.map( item => { 
 
-                if( item.id === id && item.quantity <= 5) { 
-                return {
-                    ...item ,
-                    quantity : item.quantity + 1
-                }
-            }
+    //             if( item.id === id && item.quantity <= 5) { 
+    //             return {
+    //                 ...item ,
+    //                 quantity : item.quantity + 1
+    //             }
+    //         }
 
-            // el resto de elemento que no dimos click no los perdamos.
-            return item
-        })
-    setCart(updateCart)
-    }
+    //         // el resto de elemento que no dimos click no los perdamos.
+    //         return item
+    //     })
+
+    //     setCart(updateCart)
+
+    // }
 
 
     function decrementQuantity( id : Guitar['id'] ) { 
@@ -91,5 +93,5 @@ export const useCart = () => {
     const cartTotal =  useMemo( () => { return cart.reduce( ( total , item ) => total + ( item.quantity * item.price ) , 0 ) } , [cart] )
 
 
-    return { initialCart  , increaseyQuantity , decrementQuantity , data , cart , cleanCart  , cartTotal }
+    return { initialCart  , decrementQuantity , data , cart , cleanCart  , cartTotal }
 }

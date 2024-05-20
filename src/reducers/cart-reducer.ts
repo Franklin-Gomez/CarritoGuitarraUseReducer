@@ -3,7 +3,8 @@ import { db } from "../db/db"
 // Actions
 export type CartActions = 
     { type : 'addToCart' , payload : { item : Guitar } } |
-    { type : 'removeFromCart' , payload : { id : Guitar['id'] } } 
+    { type : 'removeFromCart' , payload : { id : Guitar['id'] } } |
+    { type : 'increaseyQuantity' , payload : { id : Guitar['id'] } } 
 
 
 // types
@@ -78,6 +79,30 @@ export const cartReducer = (
             ...state,
             cart : updateCart
         }
+    }
+
+    if( actions.type == 'increaseyQuantity') { 
+
+        const updateCart = state.cart.map( item => { 
+
+            if( item.id === actions.payload.id && item.quantity <= CANT_MAX) { 
+
+                return {
+                    ...item ,
+                    quantity : item.quantity + 1
+                }
+            }
+
+            // el resto de elemento que no dimos click no los perdamos.
+            return item
+
+        })
+
+        return { 
+            ...state,
+            cart : updateCart
+        }
+        
     }
 
     return { 

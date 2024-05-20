@@ -4,14 +4,13 @@ import { CartActions } from "../reducers/cart-reducer"
 type HeaderProps = { 
     cart : cartItem[]
     dispatch : React.Dispatch<CartActions>
-    increaseyQuantity: (id: number) => void
     decrementQuantity: (id: number) => void
     cleanCart : () => void
     cartTotal : number
 
 }
 
-function Header( {cart , dispatch ,  increaseyQuantity , decrementQuantity , cleanCart , cartTotal } : HeaderProps ) {
+function Header( {cart , dispatch , decrementQuantity , cleanCart , cartTotal } : HeaderProps ) {
 
     const isEmpty = useMemo( () => { return cart.length === 0 } , [cart] ) 
 
@@ -61,7 +60,9 @@ function Header( {cart , dispatch ,  increaseyQuantity , decrementQuantity , cle
                                                             </button>
                                                             {guitar.quantity}
                                                             <button type="button" className="btn btn-dark"
-                                                            onClick={() => increaseyQuantity(guitar.id)}>
+                                                            //onClick={() => increaseyQuantity(guitar.id)}
+                                                            onClick={ () => dispatch( { type : 'increaseyQuantity' , payload : { id : guitar.id }})}
+                                                            >
                                                                 +
                                                             </button>
                                                         </td>
